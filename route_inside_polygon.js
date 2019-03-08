@@ -66,7 +66,7 @@ function init() {
     );
   }
 
-  $.ajax({
+  Jquery.ajax({
     url: 'moscow.json',
     dataType: 'json',
     success: onPolygonLoad
