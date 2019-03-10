@@ -1,4 +1,6 @@
-ymaps.ready(init);
+$(document).ready(function () {
+  ymaps.ready(init);
+});
 
 function init() {
   var myMap = new ymaps.Map("map", {
@@ -18,7 +20,7 @@ function init() {
     myMap.geoObjects.add(moscowPolygon);
 
     ymaps
-      .route([[59.939095, 30.315868], [55.68312, 37.595136]])
+      .route([[59.939095, 30.315868], [59.714951, 30.401340]])
       .then(function(res) {
         // Объединим в выборку все сегменты маршрута.
         var pathsObjects = ymaps.geoQuery(res.getPaths()),
@@ -45,11 +47,11 @@ function init() {
             .add(res.getViaPoints())
             .setOptions("strokeWidth", 3)
             .addToMap(myMap),
-          // Найдем все объекты, попадающие внутрь МКАД.
+          // Найдем все объекты, попадающие внутрь КАД.
           objectsInMoscow = routeObjects.searchInside(moscowPolygon),
-          // Найдем объекты, пересекающие МКАД.
+          // Найдем объекты, пересекающие КАД.
           boundaryObjects = routeObjects.searchIntersect(moscowPolygon);
-        // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие МКАД.
+        // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие КАД.
         boundaryObjects.setOptions({
           strokeColor: "#06ff00",
           preset: "islands#greenIcon"
@@ -58,7 +60,7 @@ function init() {
           strokeColor: "#ff0005",
           preset: "islands#redIcon"
         });
-        // Объекты за пределами МКАД получим исключением полученных выборок из
+        // Объекты за пределами КАД получим исключением полученных выборок из
         // исходной.
         routeObjects
           .remove(objectsInMoscow)
