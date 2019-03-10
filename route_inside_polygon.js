@@ -70,7 +70,7 @@ function init() {
       });
   }
 
-  Jquery.ajax({
+  $.ajax({
     url: 'moscow.json',
     dataType: 'json',
     success: onPolygonLoad
