@@ -18,7 +18,10 @@ function init() {
     // Чтобы корректно осуществлялись геометрические операции
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
-
+    var btn = $('#btn');
+    btn.addEventListener('click', function name(params) {
+      console.log('test');
+    });
     ymaps
       .route([[59.939095, 30.315868], [59.714951, 30.401340]])
       .then(function(res) {
