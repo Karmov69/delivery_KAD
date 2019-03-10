@@ -2,7 +2,7 @@ ymaps.ready(init);
 
 function init() {
   var myMap = new ymaps.Map("map", {
-    center: [55.73, 37.75],
+    center: [59.939095, 30.315868],
     zoom: 9
   }, {
       searchControlProvider: 'yandex#search'
@@ -18,7 +18,7 @@ function init() {
     myMap.geoObjects.add(moscowPolygon);
 
     ymaps
-      .route([[55.654884, 37.527034], [55.68312, 37.595136]])
+      .route([[59.939095, 30.315868], [55.68312, 37.595136]])
       .then(function(res) {
         // Объединим в выборку все сегменты маршрута.
         var pathsObjects = ymaps.geoQuery(res.getPaths()),
