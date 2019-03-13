@@ -20,7 +20,28 @@ function init() {
     myMap.geoObjects.add(moscowPolygon);
 
     var btn = document.getElementById('btn');
-   
+    // -------------
+
+    myMap.events.add('click', function (e) {
+      if (!myMap.balloon.isOpen()) {
+        var coords = e.get('coords');
+        myMap.balloon.open(coords, {
+          contentHeader: 'Событие!',
+          contentBody: '<p>Кто-то щелкнул по карте.</p>' +
+            '<p>Координаты щелчка: ' + [
+              coords[0].toPrecision(6),
+              coords[1].toPrecision(6)
+            ].join(', ') + '</p>',
+          contentFooter: '<sup>Щелкните еще раз</sup>'
+        });
+      }
+      else {
+        myMap.balloon.close();
+      }
+    });
+
+    //---------------
+
     btn.addEventListener('click', function () {
       ymaps
         .route([[59.939095, 30.315868], [59.714951, 30.401340]])
