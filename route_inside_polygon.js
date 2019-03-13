@@ -18,10 +18,36 @@ function init() {
     // Чтобы корректно осуществлялись геометрические операции
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
-    var btn = document.getElementById('btn');
-    myMap.events.add('click', function (e) {
-      console.log('mao click test');
+
+    // --------------------------
+
+    // Получим ссылку на маршрут.
+    routePanelControl.routePanel.getRouteAsync().then(function (route) {
+
+      // Повесим обработчик на событие построения маршрута.
+      route.model.events.add('requestsuccess', function () {
+
+        var activeRoute = route.getActiveRoute();
+        if (activeRoute) {
+          // Получим протяженность маршрута.
+          var length = route.getActiveRoute().properties.get("distance"),
+            // Вычислим стоимость доставки.
+            price = calculate(Math.round(length.value / 1000)),
+            // Создадим макет содержимого балуна маршрута.
+            balloonContentLayout = ymaps.templateLayoutFactory.createClass(
+              '<span>Расстояние: ' + length.text + '.</span><br/>' +
+              '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
+          // Зададим этот макет для содержимого балуна.
+          route.options.set('routeBalloonContentLayout', balloonContentLayout);
+        }
+      });
+
     });
+
+    //------------------------------
+
+    var btn = document.getElementById('btn');
+   
     btn.addEventListener('click', function () {
       ymaps
         .route([[59.939095, 30.315868], [59.714951, 30.401340]])
