@@ -24,6 +24,7 @@ function init() {
     myMap.events.add('click', function (e) {
 
       if (!myMap.balloon.isOpen()) {
+        myMap.clear();
         var coords = e.get('coords');
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
