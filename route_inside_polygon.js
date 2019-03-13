@@ -25,6 +25,7 @@ function init() {
 
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
+        myMap.geoObjects.add(moscowPolygon);
         var coords = e.get('coords');
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
