@@ -20,7 +20,10 @@ function init() {
     myMap.geoObjects.add(moscowPolygon);
 
     // --------------------------
-
+    routePanelControl.routePanel.state.set({
+      fromEnabled: true,
+      from: "г. Санкт-Петербург, Среднеохтинский проспект 15/2"
+    });
     // Получим ссылку на маршрут.
     routePanelControl.routePanel.getRouteAsync().then(function (route) {
 
