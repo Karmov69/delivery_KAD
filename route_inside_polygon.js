@@ -19,7 +19,9 @@ function init() {
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
     var btn = document.getElementById('btn');
-
+    myMap.events.add('click', function (e) {
+      console.log('mao click test');
+    });
     btn.addEventListener('click', function () {
       ymaps
         .route([[59.939095, 30.315868], [59.714951, 30.401340]])
