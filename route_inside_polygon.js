@@ -14,7 +14,7 @@ function init() {
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
     // Если мы не хотим, чтобы контур был виден, зададим соответствующую опцию.
-    moscowPolygon.options.set('visible', true);
+    moscowPolygon.options.set('visible', false);
     // Чтобы корректно осуществлялись геометрические операции
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
