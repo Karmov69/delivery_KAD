@@ -12,13 +12,6 @@ function init() {
     }),
     moscowPolygon;
 
-  var balloonContentLayout = ymaps.templateLayoutFactory.createClass(
-    '<span>Расстояние: test </span><br/>' +
-    '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + 12212 + ' р.</span>');
-   
-
-  myMap.controls.add(routePanelControl);
-
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
     // Если мы не хотим, чтобы контур был виден, зададим соответствующую опцию.
