@@ -49,20 +49,8 @@ function init() {
                 });
               }
             });
-            var activeRoute = route.getActiveRoute();
-            debugger;
-            if (activeRoute) {
-              // Получим протяженность маршрута.
-              var length = route.getActiveRoute().properties.get("distance"),
-                // Вычислим стоимость доставки.
-                price = calculate(Math.round(length.value / 1000)),
-                // Создадим макет содержимого балуна маршрута.
-                balloonContentLayout = ymaps.templateLayoutFactory.createClass(
-                  '<span>Расстояние: ' + length.text + '.</span><br/>' +
-                  '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
-              // Зададим этот макет для содержимого балуна.
-              route.options.set('routeBalloonContentLayout', balloonContentLayout);
-            }
+            console.log(route.getActiveRoute());
+            
             // Создадим новую выборку, содержащую:
             // - отрезки, описываюшие маршрут;
             // - начальную и конечную точки;
