@@ -11,10 +11,7 @@ function init() {
     }),
     moscowPolygon;
 
-  // Функция, вычисляющая стоимость доставки.
-    function calculate(routeLength) {
-        return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
-    }
+
 
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
@@ -47,6 +44,22 @@ function init() {
                   type: "LineString",
                   coordinates: [coordinates[i], coordinates[i - 1]]
                 });
+              }
+            });
+
+            res.model.events.add('requestsuccess', function () {
+              var activeRoute = res.getActiveRoute();
+              if (activeRoute) {
+                // Получим протяженность маршрута.
+                var length = res.getActiveRoute().properties.get("distance"),
+                  // Вычислим стоимость доставки.
+                  price = calculate(Math.round(length.value / 1000)),
+                  // Создадим макет содержимого балуна маршрута.
+                  balloonContentLayout = ymaps.templateLayoutFactory.createClass(
+                    '<span>Расстояние: ' + length.text + '.</span><br/>' +
+                    '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
+                // Зададим этот макет для содержимого балуна.
+                res.options.set('routeBalloonContentLayout', balloonContentLayout);
               }
             });
             
@@ -83,6 +96,10 @@ function init() {
                 preset: "islands#blueIcon"
               });
           });
+        // Функция, вычисляющая стоимость доставки.
+        function calculate(routeLength) {
+          return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
+        }
       }
       else {
         myMap.balloon.close();
