@@ -30,9 +30,14 @@
     .delivery{
       height: 100%;
       width: 100%;
+      display: flex;
+    }
+    .delivery__calculation {
+      flex: 1;
+      height: 90%;
     }
     .delivery__map {
-      width: 100%;
+      flex: 3;
       height: 90%;
     }
   </style>
@@ -40,6 +45,9 @@
 
 <body>
   <div class="delivery">
+    <div class="delivery__calculation">
+
+    </div>
     <div class="delivery__map" id="map"></div>
   </div>
 </body>
