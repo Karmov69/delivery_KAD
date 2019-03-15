@@ -43,7 +43,9 @@ function init() {
             // Объединим в выборку все сегменты маршрута.
             var pathsObjects = ymaps.geoQuery(res.getPaths()),
               edges = [];
-
+              
+            console.log(res);
+            
             // Переберем все сегменты и разобьем их на отрезки.
             pathsObjects.each(function (path) {
               var coordinates = path.geometry.getCoordinates();
@@ -54,32 +56,7 @@ function init() {
                 });
               }
             });
-            // Получим ссылку на маршрут.
-            routePanelControl.routePanel.getRouteAsync().then(function (route) {
-
-              // Повесим обработчик на событие построения маршрута.
-              res.model.events.add('requestsuccess', function () {
-
-                var activeRoute = res.getActiveRoute();
-                if (activeRoute) {
-                  // Получим протяженность маршрута.
-                  var length = res.getActiveRoute().properties.get("distance"),
-                    // Вычислим стоимость доставки.
-                    price = calculate(Math.round(length.value / 1000)),
-                    // Создадим макет содержимого балуна маршрута.
-                    balloonContentLayout = ymaps.templateLayoutFactory.createClass(
-                      '<span>Расстояние: ' + length.text + '.</span><br/>' +
-                      '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
-                  // Зададим этот макет для содержимого балуна.
-                  res.options.set('routeBalloonContentLayout', balloonContentLayout);
-                }
-              });
-
-            });
-            // Функция, вычисляющая стоимость доставки.
-            function calculate(routeLength) {
-              return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
-            }
+            
             // Создадим новую выборку, содержащую:
             // - отрезки, описываюшие маршрут;
             // - начальную и конечную точки;
