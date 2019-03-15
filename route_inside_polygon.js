@@ -79,13 +79,10 @@ function init() {
               .remove(objectsInMoscow)
               .remove(boundaryObjects)
               .setOptions({
-                strokeColor: "#0010ff",
+                strokeColor: "#006b52",
                 preset: "islands#blueIcon",
               });
           });
-        
-
-        console.log('myMap=',myMap);
       }
       else {
         myMap.balloon.close();
