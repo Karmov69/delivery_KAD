@@ -58,12 +58,12 @@ function init() {
             routePanelControl.routePanel.getRouteAsync().then(function (route) {
 
               // Повесим обработчик на событие построения маршрута.
-              route.model.events.add('requestsuccess', function () {
+              res.model.events.add('requestsuccess', function () {
 
-                var activeRoute = route.getActiveRoute();
+                var activeRoute = res.getActiveRoute();
                 if (activeRoute) {
                   // Получим протяженность маршрута.
-                  var length = route.getActiveRoute().properties.get("distance"),
+                  var length = res.getActiveRoute().properties.get("distance"),
                     // Вычислим стоимость доставки.
                     price = calculate(Math.round(length.value / 1000)),
                     // Создадим макет содержимого балуна маршрута.
@@ -71,7 +71,7 @@ function init() {
                       '<span>Расстояние: ' + length.text + '.</span><br/>' +
                       '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
                   // Зададим этот макет для содержимого балуна.
-                  route.options.set('routeBalloonContentLayout', balloonContentLayout);
+                  res.options.set('routeBalloonContentLayout', balloonContentLayout);
                 }
               });
 
