@@ -80,20 +80,10 @@ function init() {
                 preset: "islands#blueIcon",
               });
           });
-        var myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-          balloonContentBody: [
-            '<address>',
-            '<strong>Офис Яндекса в Москве</strong>',
-            '<br/>',
-            'Адрес: 119021, Москва, ул. Льва Толстого, 16',
-            '<br/>',
-            'Подробнее: <a href="https://company.yandex.ru/">https://company.yandex.ru</a>',
-            '<br/>',
-            '<img src="http://mis.mixmarket.biz/r/200/65735/149827303.jpg"/>',
-            '</address>'
-          ]});
-          
-        myMap.geoObjects.add(myPlacemark);
+        
+
+        console.log(myMap);
+        
         myPlacemark.balloon.open();
       }
       else {
