@@ -46,11 +46,10 @@ function init() {
             // Переберем все сегменты и разобьем их на отрезки.
             pathsObjects.each(function (path) {
               var coordinates = path.geometry.getCoordinates();
-              var length = route.getActiveRoute().properties.get("distance"),
               for (var i = 1, l = coordinates.length; i < l; i++) {
                 edges.push({
                   type: "LineString",
-                  coordinates: [length]
+                  coordinates: ['test']
                 });
               }
             });
