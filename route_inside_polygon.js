@@ -64,6 +64,7 @@ function init() {
             // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие КАД.
             boundaryObjects.setOptions({
               strokeColor: "#06ff00",
+              balloonContent: 'А эта — новогодняя',
               preset: "islands#greenIcon"
             });
             objectsInMoscow.setOptions({
@@ -78,7 +79,8 @@ function init() {
               .remove(boundaryObjects)
               .setOptions({
                 strokeColor: "#0010ff",
-                preset: "islands#blueIcon"
+                preset: "islands#blueIcon",
+                balloonContent: 'А эта — новогодняя',
               });
           });
       }
