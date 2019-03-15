@@ -75,7 +75,7 @@ function init() {
               .remove(objectsInMoscow)
               .remove(boundaryObjects)
               .setOptions({
-                balloonContentLayout: ymaps.templateLayoutFactory.createClass('{{ properties.humanJamsTime }}'),
+                balloonContent: 'А эта — новогодняя',
                 strokeColor: "#0010ff",
                 preset: "islands#blueIcon"
               });
