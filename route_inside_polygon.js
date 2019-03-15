@@ -46,10 +46,7 @@ function init() {
             var pathsObjects = ymaps.geoQuery(res.getPaths()),
               edges = [];
             var price = calculate(Math.round(length.value / 1000));
-            var balloonContentLayout = ymaps.templateLayoutFactory.createClass(
-              '<span>Расстояние: ' + length.text + '.</span><br/>' +
-              '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
-            res.options.set('routeBalloonContentLayout', balloonContentLayout);
+            console.log('price = ', price);
             
             // Переберем все сегменты и разобьем их на отрезки.
             pathsObjects.each(function (path) {
