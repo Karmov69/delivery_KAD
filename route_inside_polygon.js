@@ -5,20 +5,24 @@ $(document).ready(function () {
 function init() {
   var myMap = new ymaps.Map("map", {
     center: [59.939095, 30.315868],
-    zoom: 9
+    zoom: 9,
+    controls:[]
   }, {
       searchControlProvider: 'yandex#search'
     }),
     moscowPolygon;
-    
-   
-    myMap.control.RoutePanel({
+
+    // Создадим панель маршрутизации.
+    var routePanelControl = new ymaps.control.RoutePanel({
       options: {
         // Добавим заголовок панели.
         showHeader: true,
         title: "Расчёт доставки"
       }
-    })
+    });
+   
+
+  myMap.controls.add(routePanelControl);
 
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
