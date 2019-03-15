@@ -46,6 +46,8 @@ function init() {
               }
             });
             
+            console.log('ДА или нет',moscowPolygon.geometry.contains(res));
+            
             var distance = res.getHumanLength(); //Получаем расстояние
             console.log(distance);
             
