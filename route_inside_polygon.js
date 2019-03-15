@@ -64,12 +64,10 @@ function init() {
             // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие КАД.
             boundaryObjects.setOptions({
               strokeColor: "#06ff00",
-              balloonContent: 'А эта — новогодняя',
               preset: "islands#greenIcon"
             });
             objectsInMoscow.setOptions({
               strokeColor: "#ff0005",
-              balloonContent: 'А эта — новогодняя',
               preset: "islands#redIcon"
             });
             // Объекты за пределами КАД получим исключением полученных выборок из
@@ -80,9 +78,25 @@ function init() {
               .setOptions({
                 strokeColor: "#0010ff",
                 preset: "islands#blueIcon",
-                balloonContent: 'А эта — новогодняя',
               });
           });
+        var myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+          balloonContentBody: [
+            '<address>',
+            '<strong>Офис Яндекса в Москве</strong>',
+            '<br/>',
+            'Адрес: 119021, Москва, ул. Льва Толстого, 16',
+            '<br/>',
+            'Подробнее: <a href="https://company.yandex.ru/">https://company.yandex.ru</a>',
+            '<br/>',
+            '<img src="http://mis.mixmarket.biz/r/200/65735/149827303.jpg"/>',
+            '</address>'
+          ].join('')
+        }, {
+            preset: 'islands#redDotIcon'
+          });
+        myMap.geoObjects.add(myPlacemark);
+        myPlacemark.balloon.open();
       }
       else {
         myMap.balloon.close();
