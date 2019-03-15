@@ -9,7 +9,16 @@ function init() {
   }, {
       searchControlProvider: 'yandex#search'
     }),
-    moscowPolygon;
+    moscowPolygon,
+    
+    // Создадим панель маршрутизации.
+    routePanelControl = new ymaps.control.RoutePanel({
+      options: {
+        // Добавим заголовок панели.
+        showHeader: true,
+        title: "Расчёт доставки"
+      }
+    });
 
 
 
