@@ -9,16 +9,12 @@ function init() {
   }, {
       searchControlProvider: 'yandex#search'
     }),
-    
-    DELIVERY_TARIFF = 20,
-    // Минимальная стоимость.
-    MINIMUM_COST = 500,
     moscowPolygon;
 
   // Функция, вычисляющая стоимость доставки.
-  function calculate(routeLength) {
-    return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
-  }
+    function calculate(routeLength) {
+        return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
+    }
 
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
@@ -49,7 +45,7 @@ function init() {
               for (var i = 1, l = coordinates.length; i < l; i++) {
                 edges.push({
                   type: "LineString",
-                  coordinates: ['test']
+                  coordinates: [coordinates[i], coordinates[i - 1]]
                 });
               }
             });
