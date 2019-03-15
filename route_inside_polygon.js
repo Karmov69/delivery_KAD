@@ -12,14 +12,9 @@ function init() {
     }),
     moscowPolygon;
 
-    // Создадим панель маршрутизации.
-    var routePanelControl = new ymaps.control.RoutePanel({
-      options: {
-        // Добавим заголовок панели.
-        showHeader: true,
-        title: "Расчёт доставки"
-      }
-    });
+  var balloonContentLayout = ymaps.templateLayoutFactory.createClass(
+    '<span>Расстояние: test </span><br/>' +
+    '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + 12212 + ' р.</span>');
    
 
   myMap.controls.add(routePanelControl);
