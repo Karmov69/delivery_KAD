@@ -30,6 +30,14 @@ function init() {
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
           .then(function (res) {
+            
+            res.getPaths().options.set({
+              //  В балуне выводим только информацию о времени движения с учетом пробок.
+              balloonContentLayout: ymaps.templateLayoutFactory.createClass('{{ properties.humanJamsTime }}'),
+              // Можно выставить настройки графики маршруту.
+              strokeColor: '0000ffff',
+              opacity: 0.9
+            });
             // Объединим в выборку все сегменты маршрута.
             var pathsObjects = ymaps.geoQuery(res.getPaths()),
               edges = [];
