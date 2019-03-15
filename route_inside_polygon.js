@@ -9,20 +9,16 @@ function init() {
   }, {
       searchControlProvider: 'yandex#search'
     }),
-    moscowPolygon,
+    moscowPolygon;
     
-    // Создадим панель маршрутизации.
-    routePanelControl = new ymaps.control.RoutePanel({
+   
+    myMap.control.RoutePanel({
       options: {
         // Добавим заголовок панели.
         showHeader: true,
         title: "Расчёт доставки"
       }
-    });
-
-  function calculate(routeLength) {
-    return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
-  }
+    })
 
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
@@ -45,7 +41,6 @@ function init() {
             // Объединим в выборку все сегменты маршрута.
             var pathsObjects = ymaps.geoQuery(res.getPaths()),
               edges = [];
-            console.log(res);
             
             // Переберем все сегменты и разобьем их на отрезки.
             pathsObjects.each(function (path) {
