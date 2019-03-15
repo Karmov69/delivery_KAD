@@ -50,12 +50,11 @@ function init() {
             // - отрезки, описываюшие маршрут;
             // - начальную и конечную точки;
             // - промежуточные точки.
-            
+          
             var routeObjects = ymaps
               .geoQuery(edges)
               .add(res.getWayPoints())
               .add(res.getViaPoints())
-              .add(res.balloonContent)
               .setOptions("strokeWidth", 3)
               .addToMap(myMap),
               // Найдем все объекты, попадающие внутрь КАД.
@@ -69,6 +68,7 @@ function init() {
             });
             objectsInMoscow.setOptions({
               strokeColor: "#ff0005",
+              balloonContent: 'А эта — новогодняя',
               preset: "islands#redIcon"
             });
             // Объекты за пределами КАД получим исключением полученных выборок из
@@ -77,7 +77,6 @@ function init() {
               .remove(objectsInMoscow)
               .remove(boundaryObjects)
               .setOptions({
-                balloonContent: 'А эта — новогодняя',
                 strokeColor: "#0010ff",
                 preset: "islands#blueIcon"
               });
