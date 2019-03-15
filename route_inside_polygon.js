@@ -82,9 +82,7 @@ function init() {
           });
         
 
-        console.log(myMap);
-        
-        myPlacemark.balloon.open();
+        console.log('myMap=',myMap);
       }
       else {
         myMap.balloon.close();
