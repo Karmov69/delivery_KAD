@@ -42,7 +42,6 @@ function init() {
                 edges.push({
                   type: "LineString",
                   coordinates: [coordinates[i], coordinates[i - 1]],
-                  balloonContentLayout: ymaps.templateLayoutFactory.createClass('{{ properties.humanJamsTime }}'),
                 });
               }
             });
@@ -76,6 +75,7 @@ function init() {
               .remove(objectsInMoscow)
               .remove(boundaryObjects)
               .setOptions({
+                balloonContentLayout: ymaps.templateLayoutFactory.createClass('{{ properties.humanJamsTime }}'),
                 strokeColor: "#0010ff",
                 preset: "islands#blueIcon"
               });
