@@ -45,8 +45,7 @@ function init() {
             // Объединим в выборку все сегменты маршрута.
             var pathsObjects = ymaps.geoQuery(res.getPaths()),
               edges = [];
-            var price = calculate(Math.round(length.value / 1000));
-            console.log('price = ', price);
+            console.log(res.getActiveRoute().properties.get("distance"));
             
             // Переберем все сегменты и разобьем их на отрезки.
             pathsObjects.each(function (path) {
