@@ -50,10 +50,12 @@ function init() {
             // - отрезки, описываюшие маршрут;
             // - начальную и конечную точки;
             // - промежуточные точки.
+            
             var routeObjects = ymaps
               .geoQuery(edges)
               .add(res.getWayPoints())
               .add(res.getViaPoints())
+              .add(res.balloonContent)
               .setOptions("strokeWidth", 3)
               .addToMap(myMap),
               // Найдем все объекты, попадающие внутрь КАД.
