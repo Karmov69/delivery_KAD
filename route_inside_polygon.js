@@ -20,7 +20,9 @@ function init() {
       }
     });
 
-
+  function calculate(routeLength) {
+    return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
+  }
 
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
@@ -43,6 +45,7 @@ function init() {
             // Объединим в выборку все сегменты маршрута.
             var pathsObjects = ymaps.geoQuery(res.getPaths()),
               edges = [];
+            var price = calculate(Math.round(length.value / 1000)),
             var balloonContentLayout = ymaps.templateLayoutFactory.createClass(
               '<span>Расстояние: ' + length.text + '.</span><br/>' +
               '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
