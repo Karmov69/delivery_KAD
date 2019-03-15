@@ -54,7 +54,32 @@ function init() {
                 });
               }
             });
-            
+            // Получим ссылку на маршрут.
+            routePanelControl.routePanel.getRouteAsync().then(function (route) {
+
+              // Повесим обработчик на событие построения маршрута.
+              route.model.events.add('requestsuccess', function () {
+
+                var activeRoute = route.getActiveRoute();
+                if (activeRoute) {
+                  // Получим протяженность маршрута.
+                  var length = route.getActiveRoute().properties.get("distance"),
+                    // Вычислим стоимость доставки.
+                    price = calculate(Math.round(length.value / 1000)),
+                    // Создадим макет содержимого балуна маршрута.
+                    balloonContentLayout = ymaps.templateLayoutFactory.createClass(
+                      '<span>Расстояние: ' + length.text + '.</span><br/>' +
+                      '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
+                  // Зададим этот макет для содержимого балуна.
+                  route.options.set('routeBalloonContentLayout', balloonContentLayout);
+                }
+              });
+
+            });
+            // Функция, вычисляющая стоимость доставки.
+            function calculate(routeLength) {
+              return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
+            }
             // Создадим новую выборку, содержащую:
             // - отрезки, описываюшие маршрут;
             // - начальную и конечную точки;
@@ -107,30 +132,5 @@ function init() {
   });
 
 
-  // Получим ссылку на маршрут.
-  routePanelControl.routePanel.getRouteAsync().then(function (route) {
-
-    // Повесим обработчик на событие построения маршрута.
-    route.model.events.add('requestsuccess', function () {
-
-      var activeRoute = route.getActiveRoute();
-      if (activeRoute) {
-        // Получим протяженность маршрута.
-        var length = route.getActiveRoute().properties.get("distance"),
-          // Вычислим стоимость доставки.
-          price = calculate(Math.round(length.value / 1000)),
-          // Создадим макет содержимого балуна маршрута.
-          balloonContentLayout = ymaps.templateLayoutFactory.createClass(
-            '<span>Расстояние: ' + length.text + '.</span><br/>' +
-            '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
-        // Зададим этот макет для содержимого балуна.
-        route.options.set('routeBalloonContentLayout', balloonContentLayout);
-      }
-    });
-
-  });
-  // Функция, вычисляющая стоимость доставки.
-  function calculate(routeLength) {
-    return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
-  }
+  
 }
