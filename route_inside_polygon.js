@@ -66,11 +66,11 @@ function init() {
               boundaryObjects = routeObjects.searchIntersect(moscowPolygon);
             // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие КАД.
             boundaryObjects.setOptions({
-              strokeColor: "#06ff00",
+              strokeColor: "#ff0000",
               preset: "islands#greenIcon"
             });
             objectsInMoscow.setOptions({
-              strokeColor: "#ff0005",
+              strokeColor: "#002137",
               preset: "islands#redIcon"
             });
             // Объекты за пределами КАД получим исключением полученных выборок из
