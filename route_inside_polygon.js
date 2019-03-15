@@ -50,6 +50,7 @@ function init() {
               }
             });
             var activeRoute = route.getActiveRoute();
+            debugger;
             if (activeRoute) {
               // Получим протяженность маршрута.
               var length = route.getActiveRoute().properties.get("distance"),
