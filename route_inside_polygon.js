@@ -9,7 +9,7 @@ function init() {
   }, {
       searchControlProvider: 'yandex#search'
     }),
-
+    
     DELIVERY_TARIFF = 20,
     // Минимальная стоимость.
     MINIMUM_COST = 500,
@@ -46,10 +46,11 @@ function init() {
             // Переберем все сегменты и разобьем их на отрезки.
             pathsObjects.each(function (path) {
               var coordinates = path.geometry.getCoordinates();
+              var length = route.getActiveRoute().properties.get("distance"),
               for (var i = 1, l = coordinates.length; i < l; i++) {
                 edges.push({
                   type: "LineString",
-                  coordinates: [coordinates[i], coordinates[i - 1]]
+                  coordinates: [length]
                 });
               }
             });
@@ -77,19 +78,6 @@ function init() {
               strokeColor: "#ff0005",
               preset: "islands#redIcon"
             });
-            var activeRoute = route.getActiveRoute();
-            if (activeRoute) {
-              // Получим протяженность маршрута.
-              var length = route.getActiveRoute().properties.get("distance"),
-                // Вычислим стоимость доставки.
-                price = calculate(Math.round(length.value / 1000)),
-                // Создадим макет содержимого балуна маршрута.
-                balloonContentLayout = ymaps.templateLayoutFactory.createClass(
-                  '<span>Расстояние: ' + length.text + '.</span><br/>' +
-                  '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
-              // Зададим этот макет для содержимого балуна.
-              route.options.set('routeBalloonContentLayout', balloonContentLayout);
-            }
             // Объекты за пределами КАД получим исключением полученных выборок из
             // исходной.
             routeObjects
