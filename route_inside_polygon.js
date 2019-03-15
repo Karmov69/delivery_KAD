@@ -91,10 +91,8 @@ function init() {
             '<br/>',
             '<img src="http://mis.mixmarket.biz/r/200/65735/149827303.jpg"/>',
             '</address>'
-          ].join('')
-        }, {
-            preset: 'islands#redDotIcon'
-          });
+          ]});
+          
         myMap.geoObjects.add(myPlacemark);
         myPlacemark.balloon.open();
       }
