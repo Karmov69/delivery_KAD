@@ -1,5 +1,7 @@
 $(document).ready(function () {
   ymaps.ready(init);
+  console.log('Жора блять гаси микрозаймы');
+  
 });
 
 function init() {
