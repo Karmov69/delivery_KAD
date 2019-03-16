@@ -3,20 +3,16 @@ $(document).ready(function () {
 });
 
 function init() {
-  var inputSearch = new ymaps.control.SearchControl({
+  var searchControl = new ymaps.control.SearchControl({
     options: {
-      // Пусть элемент управления будет
-      // в виде поисковой строки.
-      size: 'large',
-      // Включим возможность искать
-      // не только топонимы, но и организации.
-      provider: 'yandex#search'
+      // Будет производиться поиск только по топонимам.
+      provider: 'yandex#map'
     }
   });
   var myMap = new ymaps.Map("map", {
     center: [59.939095, 30.315868],
     zoom: 9,
-    controls: [inputSearch]
+    controls: [searchControl]
   }, {
       searchControlProvider: 'yandex#search'
     }),
