@@ -46,7 +46,7 @@ function init() {
     // -------------
     
     myMap.events.add('click', function (e) {
-      checkRadioChecked();
+      this.checkRadioChecked();
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
