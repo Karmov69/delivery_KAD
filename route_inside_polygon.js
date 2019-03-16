@@ -21,6 +21,8 @@ function init() {
 
 
   function changeRadioCar(isKAD) {
+    console.log(isKAD);
+    
     for (i = 0; i < radioCars.length; i++) {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
