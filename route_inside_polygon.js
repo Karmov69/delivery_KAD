@@ -135,6 +135,9 @@ function init() {
 
     
     // -------------
+    myMap.events.add('search' , function (e) {
+      console.log('start search');
+    });
     
     myMap.events.add('click', function (e) {
       
