@@ -1,25 +1,4 @@
 $(document).ready(function () {
-  function chanfeRange(params) {
-    var controls = document.getElementsByName("car");
-    var rangeGazelle = document.querySelector('.range-gazelle');
-    var rangePuhto = document.querySelector('.range-puhto');
-
-    for (i = 0; i < controls.length; i++) {
-      if (controls[i].checked) {
-        var carChecked = controls[i];
-        if (carChecked.value === 'gazelle') {
-          console.log('gazelle checked');
-          rangePuhto.style.display = 'none';
-          rangeGazelle.style.display = 'block';
-        } else {
-          console.log('puhto checked');
-          rangeGazelle.style.display = 'none';
-          rangePuhto.style.display = 'block';
-        }
-      }
-    }
-  }
-
   ymaps.ready(init);
 });
 
@@ -31,9 +10,26 @@ function init() {
   }, {
       searchControlProvider: 'yandex#search'
     }),
-    moscowPolygon;
+    
+  var controls = document.getElementsByName("car");
+  var rangeGazelle = document.querySelector('.range-gazelle');
+  var rangePuhto = document.querySelector('.range-puhto');
 
-  console.log(this);
+  for (i = 0; i < controls.length; i++) {
+    if (controls[i].checked) {
+      var carChecked = controls[i];
+      if (carChecked.value === 'gazelle') {
+        console.log('gazelle checked');
+        rangePuhto.style.display = 'none';
+        rangeGazelle.style.display = 'block';
+      } else {
+        console.log('puhto checked');
+        rangeGazelle.style.display = 'none';
+        rangePuhto.style.display = 'block';
+      }
+    }
+  }
+ 
   
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
