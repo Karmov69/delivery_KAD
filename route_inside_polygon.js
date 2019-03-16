@@ -1,6 +1,4 @@
 $(document).ready(function () {
-  ymaps.ready(init);
-
   function chanfeRange(params) {
     var controls = document.getElementsByName("car");
     var rangeGazelle = document.querySelector('.range-gazelle');
@@ -21,6 +19,8 @@ $(document).ready(function () {
       }
     }
   }
+
+  ymaps.ready(init);
 });
 
 function init() {
@@ -34,7 +34,7 @@ function init() {
     moscowPolygon;
 
   
-  chanfeRange();
+  this.chanfeRange();
 
 
   function onPolygonLoad(json) {
