@@ -32,6 +32,7 @@ function init() {
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
           price = 0;
+          
           if (isKAD === true) {
             if (rangeGazelle.value <= 6) {
               price = 3500;
@@ -67,23 +68,23 @@ function init() {
               price = 9000;
             }
             if (rangeGazelle.value >= 11 && rangeGazelle.value <= 14) {
-              price = 5500;
+              price = 1100;
             }
-            if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
-              price = 7000;
+            if (rangeGazelle.value > 14 && rangeGazelle.value <= 27) {
+              price = 14000;
             }
           } else if (isKAD === false) {
-            if (rangeGazelle.value <= 6) {
-              price = 3500;
+            if (rangeGazelle.value <= 10) {
+              price = 9000;
             }
-            if (rangeGazelle.value >= 7 && rangeGazelle.value <= 12) {
-              price = 5500;
+            if (rangeGazelle.value >= 11 && rangeGazelle.value <= 14) {
+              price = 1100;
             }
-            if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
-              price = 7000;
+            if (rangeGazelle.value > 14 && rangeGazelle.value <= 27) {
+              price = 14000;
             }
             if (distance > 0) {
-              price += distance * 50;
+              price += distance * 150;
             }
           }
         }
