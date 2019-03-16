@@ -21,7 +21,24 @@ function init() {
     myMap.geoObjects.add(moscowPolygon);
 
     // -------------
-    checkRadioChecked();
+    var controls = document.getElementsByName("car");
+    var rangeGazelle = document.querySelector('.range-gazelle');
+    var rangePuhto = document.querySelector('.range-puhto');
+
+    for (i = 0; i < controls.length; i++) {
+      if (controls[i].checked) {
+        var carChecked = controls[i];
+        if (carChecked.value === 'gazelle') {
+          rangePuhto.style.display = 'none';
+          rangeGazelle.style.display = 'block';
+        } else {
+          rangeGazelle.style.display = 'none';
+          rangePuhto.style.display = 'block';
+        }
+      }
+    }
+
+
     myMap.events.add('click', function (e) {
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
