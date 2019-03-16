@@ -15,19 +15,19 @@
   <div class="delivery">
     <div class="delivery__calculation">
       <h1>Расчет цены вывоза мусора</h1>
-      <label>Газель<input type="radio" name="car" value="gazelle" checked  onchange="checkRadioChecked()"></label>
-      <label>Пухто<input type="radio" name="car" value="puhto"  onchange="checkRadioChecked()"></label>
+      <label>Газель<input type="radio" name="car" value="gazelle" checked></label>
+      <label>Пухто<input type="radio" name="car" value="puhto"></label>
 
       <div>
-        <input class="range-gazelle" type="range" min="0" max="16" step="2" value="0" onchange="changeRange(this.value)">
-        <input class="range-puhto" type="range" min="0" max="27" step="3" value="0" onchange="changeRange(this.value)">
+        <input class="range-gazelle" type="range" min="0" max="16" step="2" value="0">
+        <input class="range-puhto" type="range" min="0" max="27" step="3" value="0">
       
         <input type="text" id="valBox" value="0 м³" class="range-value">
       </div>
       
 
 
-     
+      
     </div>
     <div class="delivery__map" id="map"></div>
   </div>

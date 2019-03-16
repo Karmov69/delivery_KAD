@@ -23,6 +23,7 @@ function init() {
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
 
+    
     // -------------
     
     myMap.events.add('click', function (e) {
