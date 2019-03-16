@@ -11,16 +11,16 @@ function init() {
     controls:[]
   }, {
       searchControlProvider: 'yandex#search'
-    });
+    }),
 
-  var radioCars = document.querySelectorAll(".radio-car");
-  var rangeGazelle = document.querySelector('.range-gazelle');
-  var rangePuhto = document.querySelector('.range-puhto');
-  var activeRange = null;
-  var rangeValue = document.querySelector('.range-value');
-  var rangeCars = document.querySelectorAll('.range-car');
-  var price = 0;
-
+  radioCars = document.querySelectorAll(".radio-car"),
+  rangeGazelle = document.querySelector('.range-gazelle'),
+  rangePuhto = document.querySelector('.range-puhto'),
+  activeRange = null,
+  rangeValue = document.querySelector('.range-value'),
+  rangeCars = document.querySelectorAll('.range-car'),
+  price = 0,
+  distance = 0;
 
   function changeRadioCar(isKAD, distance) {
     for (i = 0; i < radioCars.length; i++) {
@@ -41,10 +41,18 @@ function init() {
             if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
               price = 7000;
             }
-            
           } else if (isKAD===false) {
-            if (distance) {
-              price = distance * 50;
+            if (rangeGazelle.value <= 6) {
+              price = 3500;
+            }
+            if (rangeGazelle.value >= 7 && rangeGazelle.value <= 12) {
+              price = 5500;
+            }
+            if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
+              price = 7000;
+            }
+            if (distance > 0) {
+              price += distance * 50;
             }
           }
         } else {
