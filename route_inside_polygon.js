@@ -11,29 +11,34 @@ function init() {
       searchControlProvider: 'yandex#search'
     });
 
-  var controls = document.querySelectorAll(".radio-car");
+  var radioCars = document.querySelectorAll(".radio-car");
   var rangeGazelle = document.querySelector('.range-gazelle');
   var rangePuhto = document.querySelector('.range-puhto');
   var activeRange = null;
   var rangeValue = document.querySelector('.range-value');
   var rangeCars = document.querySelectorAll('.range-car');
 
-  for (i = 0; i < controls.length; i++) {
-    if (controls[i].checked) {
-      var carChecked = controls[i];
-      if (carChecked.value === 'gazelle') {
-        console.log('gazelle checked');
-        rangePuhto.style.display = 'none';
-        rangeGazelle.style.display = 'block';
-        activeRange = 'gazelle';
-      } else {
-        console.log('puhto checked');
-        rangeGazelle.style.display = 'none';
-        rangePuhto.style.display = 'block';
-        activeRange = 'puhto';
+
+
+  function changeRadioCar() {
+    for (i = 0; i < radioCars.length; i++) {
+      if (radioCars[i].checked) {
+        var carChecked = radioCars[i];
+        if (carChecked.value === 'gazelle') {
+          console.log('gazelle checked');
+          rangePuhto.style.display = 'none';
+          rangeGazelle.style.display = 'block';
+          activeRange = 'gazelle';
+        } else {
+          console.log('puhto checked');
+          rangeGazelle.style.display = 'none';
+          rangePuhto.style.display = 'block';
+          activeRange = 'puhto';
+        }
       }
     }
   }
+  changeRadioCar();
 
   for (let i = 0; i < rangeCars.length; i++) {
     const rangeCar = rangeCars[i];
