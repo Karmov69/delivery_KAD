@@ -91,7 +91,7 @@ function init() {
     }
 
     console.log('ЦЕНА = ', price);
-    document.querySelector('.delivery__calculation__price').getElementsByTagName('span').innerText = price;
+    document.querySelector('.delivery__calculation__price').innerText = price;
   }
 
   changeRadioCar();
