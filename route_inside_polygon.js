@@ -1,5 +1,26 @@
 $(document).ready(function () {
   ymaps.ready(init);
+
+  function chanfeRange(params) {
+    var controls = document.getElementsByName("car");
+    var rangeGazelle = document.querySelector('.range-gazelle');
+    var rangePuhto = document.querySelector('.range-puhto');
+
+    for (i = 0; i < controls.length; i++) {
+      if (controls[i].checked) {
+        var carChecked = controls[i];
+        if (carChecked.value === 'gazelle') {
+          console.log('gazelle checked');
+          rangePuhto.style.display = 'none';
+          rangeGazelle.style.display = 'block';
+        } else {
+          console.log('puhto checked');
+          rangeGazelle.style.display = 'none';
+          rangePuhto.style.display = 'block';
+        }
+      }
+    }
+  }
 });
 
 function init() {
@@ -13,6 +34,7 @@ function init() {
     moscowPolygon;
 
   
+  chanfeRange();
 
 
   function onPolygonLoad(json) {
@@ -27,24 +49,7 @@ function init() {
     // -------------
     
     myMap.events.add('click', function (e) {
-      var controls = document.getElementsByName("car");
-      var rangeGazelle = document.querySelector('.range-gazelle');
-      var rangePuhto = document.querySelector('.range-puhto');
-
-      for (i = 0; i < controls.length; i++) {
-        if (controls[i].checked) {
-          var carChecked = controls[i];
-          if (carChecked.value === 'gazelle') {
-            console.log('gazelle checked');
-            rangePuhto.style.display = 'none';
-            rangeGazelle.style.display = 'block';
-          } else {
-            console.log('puhto checked');
-            rangeGazelle.style.display = 'none';
-            rangePuhto.style.display = 'block';
-          }
-        }
-      }
+      
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
