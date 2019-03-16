@@ -21,7 +21,8 @@ function init() {
 
 
   function changeRadioCar(isKAD) {
-
+    console.log(distance);
+    
     for (i = 0; i < radioCars.length; i++) {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
@@ -116,10 +117,8 @@ function init() {
            
             var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
-            var distance = res.getHumanLength(); //Получаем расстояние
-            console.log(parseInt(distance));
-            
-            changeRadioCar(isKAD);
+            var distance = parseInt(res.getHumanLength()); //Получаем расстояние
+            changeRadioCar(isKAD, distance);
 
             var controls = document.querySelectorAll(".radio-car");
             var rangeGazelle = document.querySelector('.range-gazelle');
