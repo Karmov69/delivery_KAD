@@ -15,6 +15,10 @@ function init() {
   var rangeGazelle = document.querySelector('.range-gazelle');
   var rangePuhto = document.querySelector('.range-puhto');
 
+  $(".range-car").change(function () {
+    console.log('changed range');
+  });
+
   for (i = 0; i < controls.length; i++) {
     if (controls[i].checked) {
       var carChecked = controls[i];
@@ -29,6 +33,9 @@ function init() {
       }
     }
   }
+
+
+
  
   
   function onPolygonLoad(json) {
@@ -72,6 +79,25 @@ function init() {
             var distance = res.getHumanLength(); //Получаем расстояние
             console.log(distance);
             
+            var controls = document.querySelectorAll(".radio-car");
+            var rangeGazelle = document.querySelector('.range-gazelle');
+            var rangePuhto = document.querySelector('.range-puhto');
+
+            for (i = 0; i < controls.length; i++) {
+              if (controls[i].checked) {
+                var carChecked = controls[i];
+                if (carChecked.value === 'gazelle') {
+                  console.log('gazelle checked');
+                  rangePuhto.style.display = 'none';
+                  rangeGazelle.style.display = 'block';
+                } else {
+                  console.log('puhto checked');
+                  rangeGazelle.style.display = 'none';
+                  rangePuhto.style.display = 'block';
+                }
+              }
+            }
+
             // Создадим новую выборку, содержащую:
             // - отрезки, описываюшие маршрут;
             // - начальную и конечную точки;
