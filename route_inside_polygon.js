@@ -12,6 +12,28 @@ function init() {
     }),
     moscowPolygon;
 
+  function checkRadioChecked() {
+    var controls = document.getElementsByName("car");
+    var rangeGazelle = document.querySelector('.range-gazelle');
+    var rangePuhto = document.querySelector('.range-puhto');
+
+    for (i = 0; i < controls.length; i++) {
+      if (controls[i].checked) {
+        var carChecked = controls[i];
+        if (carChecked.value === 'gazelle') {
+          console.log('gazelle checked');
+          rangePuhto.style.display = 'none';
+          rangeGazelle.style.display = 'block';
+        } else {
+          console.log('puhto checked');
+          rangeGazelle.style.display = 'none';
+          rangePuhto.style.display = 'block';
+        }
+      }
+    }
+  }
+
+
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
     // Если мы не хотим, чтобы контур был виден, зададим соответствующую опцию.
@@ -21,25 +43,9 @@ function init() {
     myMap.geoObjects.add(moscowPolygon);
 
     // -------------
-    var controls = document.getElementsByName("car");
-    var rangeGazelle = document.querySelector('.range-gazelle');
-    var rangePuhto = document.querySelector('.range-puhto');
-
-    for (i = 0; i < controls.length; i++) {
-      if (controls[i].checked) {
-        var carChecked = controls[i];
-        if (carChecked.value === 'gazelle') {
-          rangePuhto.style.display = 'none';
-          rangeGazelle.style.display = 'block';
-        } else {
-          rangeGazelle.style.display = 'none';
-          rangePuhto.style.display = 'block';
-        }
-      }
-    }
-
-
+    
     myMap.events.add('click', function (e) {
+      checkRadioChecked();
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
@@ -108,26 +114,7 @@ function init() {
 
 
         
-        function checkRadioChecked() {
-          var controls = document.getElementsByName("car");
-          var rangeGazelle = document.querySelector('.range-gazelle');
-          var rangePuhto = document.querySelector('.range-puhto');
-
-          for (i = 0; i < controls.length; i++) {
-            if (controls[i].checked) {
-              var carChecked = controls[i];
-              if (carChecked.value === 'gazelle') {
-                console.log('gazelle checked');
-                rangePuhto.style.display = 'none';
-                rangeGazelle.style.display = 'block';
-              } else {
-                console.log('puhto checked');
-                rangeGazelle.style.display = 'none';
-                rangePuhto.style.display = 'block';
-              }
-            }
-          }
-        }
+        
 
         function changeRange(value) {
           var rangeValue = document.querySelector('.range-value');
