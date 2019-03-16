@@ -1,7 +1,5 @@
 $(document).ready(function () {
   ymaps.ready(init);
-  console.log('Жора блять гаси микрозаймы');
-  
 });
 
 function init() {
@@ -135,8 +133,11 @@ function init() {
 
     
     // -------------
-    myMap.events.add('contextmenu', function (e) {
-      console.log('start search test');
+    var result = searchControl.getResult(0);
+    result.then(function (res) {
+      console.log("Результат " + res);
+    }, function (err) {
+      console.log("Ошибка");
     });
 
     myMap.events.add('click', function (e) {
