@@ -23,7 +23,9 @@ function init() {
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
 
-    function checkRadioChecked() {
+    // -------------
+    
+    myMap.events.add('click', function (e) {
       var controls = document.getElementsByName("car");
       var rangeGazelle = document.querySelector('.range-gazelle');
       var rangePuhto = document.querySelector('.range-puhto');
@@ -42,11 +44,6 @@ function init() {
           }
         }
       }
-    }
-    // -------------
-    
-    myMap.events.add('click', function (e) {
-      this.checkRadioChecked();
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
