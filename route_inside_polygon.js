@@ -21,8 +21,6 @@ function init() {
 
 
   function changeRadioCar(isKAD, distance) {
-    console.log(distance);
-    
     for (i = 0; i < radioCars.length; i++) {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
@@ -41,9 +39,11 @@ function init() {
             if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
               price = 7000;
             }
-            console.log(price);
-          } else if (isKAD===false) {
             
+          } else if (isKAD===false) {
+            if (distance) {
+              price = distance * 50;
+            }
           }
         } else {
           console.log('puhto checked');
@@ -56,6 +56,8 @@ function init() {
         }
       }
     }
+
+    console.log('ЦЕНА = ', price);
   }
 
   changeRadioCar();
