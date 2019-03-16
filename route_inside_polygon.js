@@ -21,8 +21,6 @@ function init() {
 
 
   function changeRadioCar(isKAD) {
-    console.log(isKAD);
-    
     for (i = 0; i < radioCars.length; i++) {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
@@ -31,11 +29,17 @@ function init() {
           rangePuhto.style.display = 'none';
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
+          if (isKAD) {
+            console.log('rangeGazelle = ',rangeGazelle.value);
+          }
         } else {
           console.log('puhto checked');
           rangeGazelle.style.display = 'none';
           rangePuhto.style.display = 'block';
           activeRange = 'puhto';
+          if (isKAD) {
+
+          }
         }
       }
     }
