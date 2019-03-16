@@ -20,7 +20,7 @@ function init() {
 
 
 
-  function changeRadioCar() {
+  function changeRadioCar(isKAD) {
     for (i = 0; i < radioCars.length; i++) {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
@@ -95,11 +95,14 @@ function init() {
               }
             });
             
-            console.log('ДА или нет', moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]));
-            
+           
+            var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
+
             var distance = res.getHumanLength(); //Получаем расстояние
-            console.log(distance);
+            console.log(parseInt(distance));
             
+            changeRadioCar(isKAD);
+
             var controls = document.querySelectorAll(".radio-car");
             var rangeGazelle = document.querySelector('.range-gazelle');
             var rangePuhto = document.querySelector('.range-puhto');
