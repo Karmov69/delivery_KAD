@@ -31,8 +31,6 @@ function init() {
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
           if (isKAD === true) {
-            
-          } else if (isKAD===false) {
             if (rangeGazelle.value <= 6) {
               price = 3500;
             }
@@ -42,8 +40,8 @@ function init() {
             if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
               price = 7000;
             }
-
             console.log(price);
+          } else if (isKAD===false) {
             
           }
         } else {
