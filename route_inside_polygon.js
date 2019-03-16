@@ -17,10 +17,11 @@ function init() {
   var activeRange = null;
   var rangeValue = document.querySelector('.range-value');
   var rangeCars = document.querySelectorAll('.range-car');
-
+  var price = 0;
 
 
   function changeRadioCar(isKAD) {
+
     for (i = 0; i < radioCars.length; i++) {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
@@ -29,10 +30,21 @@ function init() {
           rangePuhto.style.display = 'none';
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
-          if (isKAD) {
-            if (rangeGazelle.value < 6) {
-              console.log('OK');
+          if (isKAD === true) {
+            
+          } else if (isKAD===false) {
+            if (rangeGazelle.value <= 6) {
+              price = 3500;
             }
+            if (rangeGazelle.value >= 7 && rangeGazelle.value <= 12) {
+              price = 5500;
+            }
+            if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
+              price = 7000;
+            }
+
+            console.log(price);
+            
           }
         } else {
           console.log('puhto checked');
