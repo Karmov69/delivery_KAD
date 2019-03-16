@@ -30,7 +30,9 @@ function init() {
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
           if (isKAD) {
-            console.log('rangeGazelle = ',rangeGazelle.value);
+            if (rangeGazelle.value < 6) {
+              console.log('OK');
+            }
           }
         } else {
           console.log('puhto checked');
