@@ -33,10 +33,8 @@ function init() {
     }),
     moscowPolygon;
 
+  console.log(this);
   
-  this.chanfeRange();
-
-
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
     // Если мы не хотим, чтобы контур был виден, зададим соответствующую опцию.
