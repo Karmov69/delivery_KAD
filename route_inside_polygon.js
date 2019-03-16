@@ -9,7 +9,7 @@ function init() {
     controls:[]
   }, {
       searchControlProvider: 'yandex#search'
-    }),
+    });
 
   var controls = document.querySelectorAll(".radio-car");
   var rangeGazelle = document.querySelector('.range-gazelle');
