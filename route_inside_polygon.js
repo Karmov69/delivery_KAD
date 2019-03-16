@@ -11,11 +11,12 @@ function init() {
       searchControlProvider: 'yandex#search'
     });
 
-  var controls = $(".radio-car");
-  var rangeGazelle = $('.range-gazelle');
-  var rangePuhto = $('.range-puhto');
+  var controls = document.querySelectorAll(".radio-car");
+  var rangeGazelle = document.querySelector('.range-gazelle');
+  var rangePuhto = document.querySelector('.range-puhto');
   var activeRange = null;
-  var rangeValue = $('.range-value');
+  var rangeValue = document.querySelector('.range-value');
+  var rangeCars = document.querySelectorAll('.range-car');
 
   for (i = 0; i < controls.length; i++) {
     if (controls[i].checked) {
@@ -34,15 +35,16 @@ function init() {
     }
   }
 
-
-  $(".range-car").addEventListener('change', function () {
-    if (activeRange === 'gazelle') {
-      rangeValue.value = rangeGazelle.value + ' м³';
-    } else {
-      rangeValue.value = rangePuhto.value + ' м³';
-    }
-  });
- 
+  for (let i = 0; i < rangeCars.length; i++) {
+    const rangeCar = rangeCars[i];
+    rangeCar.addEventListener('change', function () {
+      if (activeRange === 'gazelle') {
+        rangeValue.value = rangeGazelle.value + ' м³';
+      } else {
+        rangeValue.value = rangePuhto.value + ' м³';
+      }
+    })
+  }
  
   
   function onPolygonLoad(json) {
