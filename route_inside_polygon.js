@@ -14,10 +14,8 @@ function init() {
   var controls = document.querySelectorAll(".radio-car");
   var rangeGazelle = document.querySelector('.range-gazelle');
   var rangePuhto = document.querySelector('.range-puhto');
-
-  $(".range-car").change(function () {
-    console.log('changed range');
-  });
+  var activeRange = null;
+  var rangeValue = $('.range-value');
 
   for (i = 0; i < controls.length; i++) {
     if (controls[i].checked) {
@@ -26,15 +24,23 @@ function init() {
         console.log('gazelle checked');
         rangePuhto.style.display = 'none';
         rangeGazelle.style.display = 'block';
+        activeRange = 'gazelle';
       } else {
         console.log('puhto checked');
         rangeGazelle.style.display = 'none';
         rangePuhto.style.display = 'block';
+        activeRange = 'puhto';
       }
     }
   }
 
-
+  $(".range-car").change(function () {
+    if (activeRange === 'gazelle') {
+      rangeValue.value = rangeGazelle.value + ' м³';
+    }else {
+      rangeValue.value = rangePuhto.value + ' м³';
+    }
+  });
 
  
   
