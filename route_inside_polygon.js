@@ -20,7 +20,7 @@ function init() {
   var price = 0;
 
 
-  function changeRadioCar(isKAD) {
+  function changeRadioCar(isKAD, distance) {
     console.log(distance);
     
     for (i = 0; i < radioCars.length; i++) {
