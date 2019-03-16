@@ -31,6 +31,7 @@ function init() {
           rangePuhto.style.display = 'none';
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
+          price = 0;
           if (isKAD === true) {
             if (rangeGazelle.value <= 6) {
               price = 3500;
@@ -60,14 +61,37 @@ function init() {
           rangeGazelle.style.display = 'none';
           rangePuhto.style.display = 'block';
           activeRange = 'puhto';
-          if (isKAD) {
-
+          price = 0;
+          if (isKAD === true) {
+            if (rangeGazelle.value <= 10) {
+              price = 9000;
+            }
+            if (rangeGazelle.value >= 11 && rangeGazelle.value <= 14) {
+              price = 5500;
+            }
+            if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
+              price = 7000;
+            }
+          } else if (isKAD === false) {
+            if (rangeGazelle.value <= 6) {
+              price = 3500;
+            }
+            if (rangeGazelle.value >= 7 && rangeGazelle.value <= 12) {
+              price = 5500;
+            }
+            if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
+              price = 7000;
+            }
+            if (distance > 0) {
+              price += distance * 50;
+            }
           }
         }
       }
     }
 
     console.log('ЦЕНА = ', price);
+    document.querySelector('.delivery__calculation__price').getElementsByTagName('span').innerText = price;
   }
 
   changeRadioCar();
