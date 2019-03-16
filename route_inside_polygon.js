@@ -38,7 +38,14 @@ function init() {
       }
     }
   }
+
   changeRadioCar();
+
+  for (i = 0; i < radioCars.length; i++) {
+    radioCars[i].addEventListener('change', function () {
+      changeRadioCar();
+    })
+  }
 
   for (let i = 0; i < rangeCars.length; i++) {
     const rangeCar = rangeCars[i];
