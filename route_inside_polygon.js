@@ -5,10 +5,20 @@ $(document).ready(function () {
 });
 
 function init() {
+  var inputSearch = new ymaps.control.SearchControl({
+    options: {
+      // Пусть элемент управления будет
+      // в виде поисковой строки.
+      size: 'large',
+      // Включим возможность искать
+      // не только топонимы, но и организации.
+      provider: 'yandex#search'
+    }
+  });
   var myMap = new ymaps.Map("map", {
     center: [59.939095, 30.315868],
     zoom: 9,
-    controls: []
+    controls: [inputSearch]
   }, {
       searchControlProvider: 'yandex#search'
     }),
@@ -125,7 +135,9 @@ function init() {
 
     
     // -------------
-    
+    myMap.events.add('contextmenu', function (e) {
+      console.log('start search test');
+    });
 
     myMap.events.add('click', function (e) {
       
