@@ -22,10 +22,14 @@ body,
   flex: 3;
   height: 100%;
 }
-
-.delivery .range-car {
-  width: 80%;
+.delivery .delivery__calculation__range {
   margin: 0 auto;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.delivery .delivery__calculation__range .range-car {
+  width: 100%;
 }
 
 .input {
