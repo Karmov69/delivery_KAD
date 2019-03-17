@@ -140,7 +140,11 @@ function init() {
         myGeocoder.then(
           function (res) {
             var firstGeoObject = res.geoObjects.get(0);
-            console.log(firstGeoObject.getPremiseNumber());
+            var addreess = firstGeoObject.getAddressLine();
+            var huse = firstGeoObject.getPremiseNumber();
+
+            console.log('Адрес: ' + addreess + huse);
+            
           })
 
         ymaps
