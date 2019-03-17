@@ -28,7 +28,7 @@ body,
 
 
 
-input[type=radio] {display: none;}
+input[type=radio] {visibility: hidden;}
 
 input[type=radio] + label:before {
     content: "\2713";
