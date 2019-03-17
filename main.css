@@ -26,3 +26,37 @@ body,
       height: 100%;
     }
 
+
+
+
+
+
+
+
+
+.label {
+  display: block;
+  padding: 10px;
+}
+
+.input {
+  display: none;
+}
+input:checked ~ .radiobutton:before {
+background-color: orange;
+}
+
+.radiobutton {
+  position: relative;
+  padding-left: 25px;
+}
+.radiobutton::before {
+  content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #cacaca;
+}
