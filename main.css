@@ -19,8 +19,9 @@ body,
     .delivery__calculation {
       flex: 1;
       height: 100%;
+      border: 2px solid #eda300;
     }
     .delivery__map {
-      flex: 4;
+      flex: 3;
       height: 100%;
     }
