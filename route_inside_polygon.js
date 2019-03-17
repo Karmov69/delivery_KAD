@@ -60,7 +60,7 @@ function init() {
           rangeGazelle.style.display = 'none';
           rangePuhto.style.display = 'block';
           activeRange = 'puhto';
-          price = 0;
+          
           if (isKAD === true) {
             if (rangeGazelle.value <= 10) {
               price = 9000;
