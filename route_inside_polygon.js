@@ -16,7 +16,6 @@ function init() {
   }, {
       searchControlProvider: 'yandex#search'
     }),
-  myPlacemark,
   radioCars = document.querySelectorAll(".radio-car"),
   rangeGazelle = document.querySelector('.range-gazelle'),
   rangePuhto = document.querySelector('.range-puhto'),
@@ -108,9 +107,6 @@ function init() {
 
   changeRadioCar();
 
-
-
-
   for (i = 0; i < radioCars.length; i++) {
     radioCars[i].addEventListener('change', function () {
       changeRadioCar();
@@ -127,46 +123,6 @@ function init() {
       }
     })
   }
- 
-  function getAddress(coords) {
-        myPlacemark.properties.set('iconCaption', 'поиск...');
-        ymaps.geocode(coords).then(function (res) {
-            var firstGeoObject = res.geoObjects.get(0);
-
-            myPlacemark.properties
-                .set({
-                    // Формируем строку с данными об объекте.
-                    iconCaption: [
-                        // Название населенного пункта или вышестоящее административно-территориальное образование.
-                        firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
-                        // Получаем путь до топонима, если метод вернул null, запрашиваем наименование здания.
-                        firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
-                    ].filter(Boolean).join(', '),
-                    // В качестве контента балуна задаем строку с адресом объекта.
-                    balloonContent: firstGeoObject.getAddressLine()
-                });
-        });
-    }
-
-  function getAddress(coords) {
-    myPlacemark.properties.set('iconCaption', 'поиск...');
-    ymaps.geocode(coords).then(function (res) {
-      var firstGeoObject = res.geoObjects.get(0);
-
-      myPlacemark.properties
-        .set({
-          // Формируем строку с данными об объекте.
-          iconCaption: [
-            // Название населенного пункта или вышестоящее административно-территориальное образование.
-            firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
-            // Получаем путь до топонима, если метод вернул null, запрашиваем наименование здания.
-            firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
-          ].filter(Boolean).join(', '),
-          // В качестве контента балуна задаем строку с адресом объекта.
-          balloonContent: firstGeoObject.getAddressLine()
-        });
-    });
-  }  
   
   function onPolygonLoad(json) {
     moscowPolygon = new ymaps.Polygon(json.coordinates);
@@ -204,21 +160,8 @@ function init() {
                 });
               }
             });
-            
-            
-            if (myPlacemark) {
-              myPlacemark.geometry.setCoordinates(coords);
-            }
-            // Если нет – создаем.
-            else {
-              myPlacemark = createPlacemark(coords);
-              myMap.geoObjects.add(myPlacemark);
-              // Слушаем событие окончания перетаскивания на метке.
-              myPlacemark.events.add('dragend', function () {
-                getAddress(myPlacemark.geometry.getCoordinates());
-              });
-            }
-            getAddress(coords);
+           
+
             var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
             var distance = parseInt(res.getHumanLength()); //Получаем расстояние
