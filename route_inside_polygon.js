@@ -131,19 +131,10 @@ function init() {
       var index = e.get('index');
       searchControl.getResult(index).then(function (res) {
         console.info('ПОИСК', res.geometry.getCoordinates()); // получаем координаты найденной точки
-      });
 
-      if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
         var coords = res.geometry.getCoordinates();
-
-        var myGeocoder = ymaps.geocode(coords);
-        myGeocoder.then(
-          function (res) {
-            var firstGeoObject = res.geoObjects.get(0);
-            console.log(firstGeoObject.getPremiseNumber());
-          })
 
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
@@ -223,15 +214,8 @@ function init() {
                 preset: "islands#blueIcon",
               });
           });
+      });
 
-        function changeRange(value) {
-          var rangeValue = document.querySelector('.range-value');
-          rangeValue.value = value + 'м³';
-        }
-      }
-      else {
-        myMap.balloon.close();
-      }
     });
 
     // -------------
