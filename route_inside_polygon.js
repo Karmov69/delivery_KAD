@@ -26,11 +26,9 @@ function init() {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
         if (carChecked.value === 'gazelle') {
-          console.log('distance = ', distance);
           rangePuhto.style.display = 'none';
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
-          
 
           if (isKAD === true) {
             if (rangeGazelle.value <= 6) {
@@ -57,8 +55,6 @@ function init() {
             }
           }
         } else {
-          console.log('distance = ', distance);
-          
           rangeGazelle.style.display = 'none';
           rangePuhto.style.display = 'block';
           activeRange = 'puhto';
@@ -133,8 +129,6 @@ function init() {
 
       var index = e.get('index');
       searchControl.getResult(index).then(function (res) {
-        console.info('ПОИСК', res.geometry.getCoordinates()); // получаем координаты найденной точки
-
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
         var coords = res.geometry.getCoordinates();
@@ -178,11 +172,9 @@ function init() {
               if (controls[i].checked) {
                 var carChecked = controls[i];
                 if (carChecked.value === 'gazelle') {
-                  console.log('gazelle checked');
                   rangePuhto.style.display = 'none';
                   rangeGazelle.style.display = 'block';
                 } else {
-                  console.log('puhto checked');
                   rangeGazelle.style.display = 'none';
                   rangePuhto.style.display = 'block';
                 }
@@ -276,11 +268,9 @@ function init() {
               if (controls[i].checked) {
                 var carChecked = controls[i];
                 if (carChecked.value === 'gazelle') {
-                  console.log('gazelle checked');
                   rangePuhto.style.display = 'none';
                   rangeGazelle.style.display = 'block';
                 } else {
-                  console.log('puhto checked');
                   rangeGazelle.style.display = 'none';
                   rangePuhto.style.display = 'block';
                 }
