@@ -97,7 +97,7 @@ function init() {
 
   for (i = 0; i < radioCars.length; i++) {
     radioCars[i].addEventListener('change', function () {
-      changeRadioCar();
+      changeRadioCar(distance);
     })
   }
 
