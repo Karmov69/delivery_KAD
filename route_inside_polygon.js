@@ -19,7 +19,6 @@ function init() {
   price = 0,
   distance = 0;
 
-
   function changeRadioCar(isKAD, distance) {
     for (i = 0; i < radioCars.length; i++) {
       if (radioCars[i].checked) {
@@ -120,7 +119,6 @@ function init() {
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
 
-
     var searchControl = new ymaps.control.SearchControl({
       options: {
         provider: 'yandex#search'
@@ -129,20 +127,16 @@ function init() {
     
     myMap.controls.add(searchControl);
 
-
     searchControl.events.add('resultselect', function (e) {
       var index = e.get('index');
       searchControl.getResult(index).then(function (res) {
         console.info('ПОИСК', res.geometry.getCoordinates()); // получаем координаты найденной точки
       });
-    });
-    // -------------
-   
-    function searchLocation(e) {
+
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
-        var coords = e.get('coords');
+        var coords = res.geometry.getCoordinates();
 
         var myGeocoder = ymaps.geocode(coords);
         myGeocoder.then(
@@ -230,6 +224,110 @@ function init() {
               });
           });
 
+        function changeRange(value) {
+          var rangeValue = document.querySelector('.range-value');
+          rangeValue.value = value + 'м³';
+        }
+      }
+      else {
+        myMap.balloon.close();
+      }
+    });
+
+    // -------------
+
+    myMap.events.add('click', function (e) {
+      
+      if (!myMap.balloon.isOpen()) {
+        myMap.geoObjects.removeAll();
+        myMap.geoObjects.add(moscowPolygon);
+        var coords = e.get('coords');
+
+        var myGeocoder = ymaps.geocode(coords);
+        myGeocoder.then(
+          function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
+            console.log(firstGeoObject.getPremiseNumber());
+          })
+
+        ymaps
+          .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
+          .then(function (res) {
+            
+            // Объединим в выборку все сегменты маршрута.
+            var pathsObjects = ymaps.geoQuery(res.getPaths()),
+              edges = [];
+            
+            // Переберем все сегменты и разобьем их на отрезки.
+            pathsObjects.each(function (path) {
+              var coordinates = path.geometry.getCoordinates();
+              for (var i = 1, l = coordinates.length; i < l; i++) {
+                edges.push({
+                  type: "LineString",
+                  coordinates: [coordinates[i], coordinates[i - 1]],
+                });
+              }
+            });
+           
+
+            var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
+
+            var distance = parseInt(res.getHumanLength()); //Получаем расстояние
+            changeRadioCar(isKAD, distance);
+
+            var controls = document.querySelectorAll(".radio-car");
+            var rangeGazelle = document.querySelector('.range-gazelle');
+            var rangePuhto = document.querySelector('.range-puhto');
+
+            for (i = 0; i < controls.length; i++) {
+              if (controls[i].checked) {
+                var carChecked = controls[i];
+                if (carChecked.value === 'gazelle') {
+                  console.log('gazelle checked');
+                  rangePuhto.style.display = 'none';
+                  rangeGazelle.style.display = 'block';
+                } else {
+                  console.log('puhto checked');
+                  rangeGazelle.style.display = 'none';
+                  rangePuhto.style.display = 'block';
+                }
+              }
+            }
+
+            // Создадим новую выборку, содержащую:
+            // - отрезки, описываюшие маршрут;
+            // - начальную и конечную точки;
+            // - промежуточные точки.
+          
+            var routeObjects = ymaps
+              .geoQuery(edges)
+              .add(res.getWayPoints())
+              .add(res.getViaPoints())
+              .setOptions("strokeWidth", 3)
+              .addToMap(myMap),
+              // Найдем все объекты, попадающие внутрь КАД.
+              objectsInMoscow = routeObjects.searchInside(moscowPolygon),
+              // Найдем объекты, пересекающие КАД.
+              boundaryObjects = routeObjects.searchIntersect(moscowPolygon);
+            // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие КАД.
+            boundaryObjects.setOptions({
+              strokeColor: "#006b52",
+              preset: "islands#greenIcon"
+            });
+            objectsInMoscow.setOptions({
+              strokeColor: "#002137",
+              preset: "islands#redIcon"
+            });
+            // Объекты за пределами КАД получим исключением полученных выборок из
+            // исходной.
+            routeObjects
+              .remove(objectsInMoscow)
+              .remove(boundaryObjects)
+              .setOptions({
+                strokeColor: "#006b52",
+                preset: "islands#blueIcon",
+              });
+          });
 
         function changeRange(value) {
           var rangeValue = document.querySelector('.range-value');
@@ -239,9 +337,7 @@ function init() {
       else {
         myMap.balloon.close();
       }
-    }
-
-    myMap.events.add('click', bind(this, searchLocation(e)));
+    });
 
     //---------------
 
