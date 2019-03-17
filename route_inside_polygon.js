@@ -136,7 +136,7 @@ function init() {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
         var coords = res.geometry.getCoordinates();
-        searchControl.hideResult();
+        
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
           .then(function (res) {
@@ -216,7 +216,7 @@ function init() {
               });
           });
       });
-
+      searchControl.hideResult();
     });
 
     // -------------
