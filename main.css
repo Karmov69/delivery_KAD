@@ -77,6 +77,14 @@ background-color: orange;
 
 .delivery .delivery__calculation__send {
   display: block;
+  margin: 0 auto;
+  padding: 20px 68px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 40px;
+  width: 300%;
+  border: 2px solid #000;
+  box-shadow: none;
 }
 
 .delivery .delivery__form input {
