@@ -147,7 +147,7 @@ function init() {
         myGeocoder.then(
           function (res) {
             var firstGeoObject = res.geoObjects.get(0);
-            console.log(firstGeoObject);
+            console.log(firstGeoObject.getAddressLine());
           })
 
         ymaps
