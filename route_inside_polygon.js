@@ -18,12 +18,6 @@ function init() {
   rangeCars = document.querySelectorAll('.range-car'),
   price = 0,
   distance = 0;
-  var result = searchControl.getResult(0);
-  result.then(function (res) {
-    console.log("Результат " + res);
-  }, function (err) {
-    console.log("Ошибка");
-  });
 
 
   function changeRadioCar(isKAD, distance) {
