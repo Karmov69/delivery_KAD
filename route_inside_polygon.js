@@ -25,7 +25,7 @@ function init() {
       if (radioCars[i].checked) {
         var carChecked = radioCars[i];
         if (carChecked.value === 'gazelle') {
-          console.log('gazelle checked');
+          console.log('distance = ', distance);
           rangePuhto.style.display = 'none';
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
@@ -56,7 +56,8 @@ function init() {
             }
           }
         } else {
-          console.log('puhto checked');
+          console.log('distance = ', distance);
+          
           rangeGazelle.style.display = 'none';
           rangePuhto.style.display = 'block';
           activeRange = 'puhto';
@@ -89,7 +90,6 @@ function init() {
       }
     }
 
-    console.log('ЦЕНА = ', price);
     document.querySelector('.delivery__calculation__price').innerText = 'Итого: ' + price + ' ₽';
   }
 
