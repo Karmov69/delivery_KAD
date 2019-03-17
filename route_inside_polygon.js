@@ -147,6 +147,8 @@ function init() {
         myGeocoder.then(
           function (res) {
             var nearest = res.geoObjects.get(0);
+            console.log('nearest = ',nearest);
+            
             var name = nearest.properties.get('name');
             console.log(name);
           })
