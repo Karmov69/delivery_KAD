@@ -13,6 +13,10 @@
   height: 100%;
 }
 
+.delivery .radio-car {
+  width: 80%;
+  margin: 0 auto;
+}
 
 .input {
   display: none;
