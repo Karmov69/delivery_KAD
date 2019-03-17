@@ -16,6 +16,7 @@ function init() {
   activeRange = null,
   rangeValue = document.querySelector('.range-value'),
   rangeCars = document.querySelectorAll('.range-car'),
+  deliveryFrom = document.querySelector('.delivery__calculation__from'),
   price = 0,
   distance = 0;
 
@@ -140,11 +141,7 @@ function init() {
         myGeocoder.then(
           function (res) {
             var firstGeoObject = res.geoObjects.get(0);
-            var addreess = firstGeoObject.getAddressLine();
-            var huse = firstGeoObject.getPremiseNumber();
-
-            console.log('Адрес: ' + addreess + huse);
-            
+            deliveryFrom.innerText = firstGeoObject.getAddressLine();
           })
 
         ymaps
@@ -242,7 +239,7 @@ function init() {
         myGeocoder.then(
           function (res) {
             var firstGeoObject = res.geoObjects.get(0);
-            console.log(firstGeoObject.getPremiseNumber());
+            deliveryFrom.innerText = firstGeoObject.getAddressLine();
           })
 
         ymaps
