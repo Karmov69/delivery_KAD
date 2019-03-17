@@ -216,7 +216,7 @@ function init() {
               });
           });
       });
-      searchControl.hideResult();
+      searchControl.clear();
     });
 
     // -------------
