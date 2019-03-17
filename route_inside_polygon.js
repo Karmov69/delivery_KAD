@@ -128,8 +128,10 @@ function init() {
     myMap.controls.add(searchControl);
 
     searchControl.events.add('resultselect', function (e) {
+
       var index = e.get('index');
       searchControl.getResult(index).then(function (res) {
+        res.events.clear();
         console.info('ПОИСК', res.geometry.getCoordinates()); // получаем координаты найденной точки
 
         myMap.geoObjects.removeAll();
