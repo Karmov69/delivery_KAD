@@ -3,16 +3,10 @@ $(document).ready(function () {
 });
 
 function init() {
-  var searchControl = new ymaps.control.SearchControl({
-    options: {
-      // Будет производиться поиск только по топонимам.
-      provider: 'yandex#map'
-    }
-  });
   var myMap = new ymaps.Map("map", {
     center: [59.939095, 30.315868],
     zoom: 9,
-    controls: [searchControl]
+    controls: []
   }, {
       searchControlProvider: 'yandex#search'
     }),
@@ -132,7 +126,22 @@ function init() {
     // над спроецированным многоугольником, его нужно добавить на карту.
     myMap.geoObjects.add(moscowPolygon);
 
+
+    var searchControl = new ymaps.control.SearchControl({
+      options: {
+        provider: 'yandex#search'
+      }
+    });
     
+    myMap.controls.add(searchControl);
+
+
+    searchControl.events.add('resultselect', function (e) {
+      var index = e.get('index');
+      searchControl.getResult(index).then(function (res) {
+        console.info('ПОИСК', res.geometry.getCoordinates()); // получаем координаты найденной точки
+      });
+    });
     // -------------
    
 
