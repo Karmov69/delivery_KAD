@@ -247,7 +247,7 @@ function init() {
       }
     }
 
-    myMap.events.add('click', searchLocation(e));
+    myMap.events.add('click', searchLocation());
 
     //---------------
 
