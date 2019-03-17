@@ -3,7 +3,6 @@ $(document).ready(function () {
 });
 
 function init() {
-
   $("#phone").mask("+7(999)999-99-99");
  
   var myMap = new ymaps.Map("map", {
@@ -42,7 +41,7 @@ function init() {
             }
             if (rangeGazelle.value >= 13 && rangeGazelle.value <= 16) {
               price = 7000;
-            }
+            }  
           } else if (isKAD===false) {
             if (rangeGazelle.value <= 6) {
               price = 3500;
@@ -95,7 +94,7 @@ function init() {
 
   changeRadioCar();
 
-  for (i = 0; i < radioCars.length; i++) {
+  for (i = 0;  i < radioCars.length;  i++) {
     radioCars[i].addEventListener('change', function () {
       changeRadioCar(isKAD, distanceWay);
     })
@@ -109,16 +108,16 @@ function init() {
       } else {
         rangeValue.value = rangePuhto.value + ' м³';
       }
-    })
+    });
   }
   
   function onPolygonLoad(json) {
-    moscowPolygon = new ymaps.Polygon(json.coordinates);
+    kadPolygon = new ymaps.Polygon(json.coordinates);
     // Если мы не хотим, чтобы контур был виден, зададим соответствующую опцию.
-    moscowPolygon.options.set('visible', false);
+    kadPolygon.options.set('visible', false);
     // Чтобы корректно осуществлялись геометрические операции
     // над спроецированным многоугольником, его нужно добавить на карту.
-    myMap.geoObjects.add(moscowPolygon);
+    myMap.geoObjects.add(kadPolygon);
 
     var searchControl = new ymaps.control.SearchControl({
       options: {
@@ -133,7 +132,7 @@ function init() {
       var index = e.get('index');
       searchControl.getResult(index).then(function (res) {
         myMap.geoObjects.removeAll();
-        myMap.geoObjects.add(moscowPolygon);
+        myMap.geoObjects.add(kadPolygon);
         var coords = res.geometry.getCoordinates();
         var myGeocoder = ymaps.geocode(coords);
         myGeocoder.then(
@@ -162,7 +161,7 @@ function init() {
             });
 
 
-            isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
+            isKAD = kadPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
             distanceWay = parseInt(res.getHumanLength()); //Получаем расстояние
             changeRadioCar(isKAD, distanceWay);
@@ -196,22 +195,22 @@ function init() {
               .setOptions("strokeWidth", 3)
               .addToMap(myMap),
               // Найдем все объекты, попадающие внутрь КАД.
-              objectsInMoscow = routeObjects.searchInside(moscowPolygon),
+              objectsInSPB = routeObjects.searchInside(kadPolygon),
               // Найдем объекты, пересекающие КАД.
-              boundaryObjects = routeObjects.searchIntersect(moscowPolygon);
+              boundaryObjects = routeObjects.searchIntersect(kadPolygon);
             // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие КАД.
             boundaryObjects.setOptions({
               strokeColor: "#006b52",
               preset: "islands#greenIcon"
             });
-            objectsInMoscow.setOptions({
+            objectsInSPB.setOptions({
               strokeColor: "#002137",
               preset: "islands#redIcon"
             });
             // Объекты за пределами КАД получим исключением полученных выборок из
             // исходной.
             routeObjects
-              .remove(objectsInMoscow)
+              .remove(objectsInSPB)
               .remove(boundaryObjects)
               .setOptions({
                 strokeColor: "#006b52",
@@ -228,7 +227,7 @@ function init() {
       
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
-        myMap.geoObjects.add(moscowPolygon);
+        myMap.geoObjects.add(kadPolygon);
         var coords = e.get('coords');
 
         var myGeocoder = ymaps.geocode(coords);
@@ -258,7 +257,7 @@ function init() {
             });
            
 
-            isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
+            isKAD = kadPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
             distanceWay = parseInt(res.getHumanLength()); //Получаем расстояние
             changeRadioCar(isKAD, distanceWay);
@@ -292,22 +291,22 @@ function init() {
               .setOptions("strokeWidth", 3)
               .addToMap(myMap),
               // Найдем все объекты, попадающие внутрь КАД.
-              objectsInMoscow = routeObjects.searchInside(moscowPolygon),
+              objectsInSPB = routeObjects.searchInside(kadPolygon),
               // Найдем объекты, пересекающие КАД.
-              boundaryObjects = routeObjects.searchIntersect(moscowPolygon);
+              boundaryObjects = routeObjects.searchIntersect(kadPolygon);
             // Раскрасим в разные цвета объекты внутри, снаружи и пересекающие КАД.
             boundaryObjects.setOptions({
               strokeColor: "#006b52",
               preset: "islands#greenIcon"
             });
-            objectsInMoscow.setOptions({
+            objectsInSPB.setOptions({
               strokeColor: "#002137",
               preset: "islands#redIcon"
             });
             // Объекты за пределами КАД получим исключением полученных выборок из
             // исходной.
             routeObjects
-              .remove(objectsInMoscow)
+              .remove(objectsInSPB)
               .remove(boundaryObjects)
               .setOptions({
                 strokeColor: "#006b52",
@@ -324,19 +323,11 @@ function init() {
         myMap.balloon.close();
       }
     });
-
-    //---------------
-
-   
-    
   }
 
   $.ajax({
-    url: 'moscow.json',
+    url: 'kad.json',
     dataType: 'json',
     success: onPolygonLoad
   });
-
-
-  
-}
+};
