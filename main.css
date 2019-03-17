@@ -13,6 +13,10 @@ body,
   width: 100%;
   display: flex;
 }
+.delivery h2 {
+  font-size: 20px;
+  text-align: center;
+}
 .delivery .delivery__calculation {
   flex: 1;
   height: 100%;
