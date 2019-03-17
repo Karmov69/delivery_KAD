@@ -81,9 +81,7 @@ background-color: orange;
 }
 
 .delivery .delivery__form input {
-  height: 50px;
-  pad: 10px;
-  font-size: 18px;
   margin: 0 auto;
   margin-bottom: 20px;
+  display: block;
 }
