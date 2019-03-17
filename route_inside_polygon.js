@@ -136,7 +136,13 @@ function init() {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
         var coords = res.geometry.getCoordinates();
-        
+        var myGeocoder = ymaps.geocode(coords);
+        myGeocoder.then(
+          function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
+            console.log(firstGeoObject.getPremiseNumber());
+          })
+
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
           .then(function (res) {
