@@ -181,18 +181,7 @@ function init() {
    
 
     myMap.events.add('click', function (e) {
-      if (myPlacemark) {
-        myPlacemark.geometry.setCoordinates(coords);
-      }
-      // Если нет – создаем.
-      else {
-        myPlacemark = createPlacemark(coords);
-        myMap.geoObjects.add(myPlacemark);
-        // Слушаем событие окончания перетаскивания на метке.
-        myPlacemark.events.add('dragend', function () {
-          getAddress(myPlacemark.geometry.getCoordinates());
-        });
-      }
+      
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
@@ -216,9 +205,20 @@ function init() {
               }
             });
             
+            
+            if (myPlacemark) {
+              myPlacemark.geometry.setCoordinates(coords);
+            }
+            // Если нет – создаем.
+            else {
+              myPlacemark = createPlacemark(coords);
+              myMap.geoObjects.add(myPlacemark);
+              // Слушаем событие окончания перетаскивания на метке.
+              myPlacemark.events.add('dragend', function () {
+                getAddress(myPlacemark.geometry.getCoordinates());
+              });
+            }
             getAddress(coords);
-
-
             var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
             var distance = parseInt(res.getHumanLength()); //Получаем расстояние
