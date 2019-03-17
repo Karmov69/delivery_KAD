@@ -166,7 +166,7 @@ function init() {
 
             var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
-            var distance = parseInt(res.getHumanLength()); //Получаем расстояние
+            distance = parseInt(res.getHumanLength()); //Получаем расстояние
             changeRadioCar(isKAD, distance);
 
             var controls = document.querySelectorAll(".radio-car");
@@ -264,7 +264,7 @@ function init() {
 
             var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
-            var distance = parseInt(res.getHumanLength()); //Получаем расстояние
+            distance = parseInt(res.getHumanLength()); //Получаем расстояние
             changeRadioCar(isKAD, distance);
 
             var controls = document.querySelectorAll(".radio-car");
