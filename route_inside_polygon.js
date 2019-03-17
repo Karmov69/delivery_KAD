@@ -29,7 +29,7 @@ function init() {
           rangePuhto.style.display = 'none';
           rangeGazelle.style.display = 'block';
           activeRange = 'gazelle';
-          price = 0;
+          
 
           if (isKAD === true) {
             if (rangeGazelle.value <= 6) {
