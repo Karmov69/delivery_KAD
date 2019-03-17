@@ -75,7 +75,10 @@ background-color: orange;
     background-color: #cacaca;
 }
 
+.delivery .delivery__calculation__send {
+  display: block;
+}
 
 .delivery .delivery__form input {
-  
+
 }
