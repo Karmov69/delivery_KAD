@@ -18,7 +18,8 @@ function init() {
   rangeCars = document.querySelectorAll('.range-car'),
   deliveryFrom = document.querySelector('.delivery__calculation__from'),
   price = 0,
-  distance = 0;
+  isKAD = false,
+  distanceWay = 0;
 
   function changeRadioCar(isKAD, distance) {
     for (i = 0; i < radioCars.length; i++) {
@@ -97,7 +98,7 @@ function init() {
 
   for (i = 0; i < radioCars.length; i++) {
     radioCars[i].addEventListener('change', function () {
-      changeRadioCar(distance);
+      changeRadioCar(isKAD, distanceWay);
     })
   }
 
@@ -164,10 +165,10 @@ function init() {
             });
 
 
-            var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
+            isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
-            distance = parseInt(res.getHumanLength()); //Получаем расстояние
-            changeRadioCar(isKAD, distance);
+            distanceWay = parseInt(res.getHumanLength()); //Получаем расстояние
+            changeRadioCar(isKAD, distanceWay);
 
             var controls = document.querySelectorAll(".radio-car");
             var rangeGazelle = document.querySelector('.range-gazelle');
@@ -262,10 +263,10 @@ function init() {
             });
            
 
-            var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
+            isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
-            distance = parseInt(res.getHumanLength()); //Получаем расстояние
-            changeRadioCar(isKAD, distance);
+            distanceWay = parseInt(res.getHumanLength()); //Получаем расстояние
+            changeRadioCar(isKAD, distanceWay);
 
             var controls = document.querySelectorAll(".radio-car");
             var rangeGazelle = document.querySelector('.range-gazelle');
