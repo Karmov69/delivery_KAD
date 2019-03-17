@@ -231,12 +231,6 @@ function init() {
           });
 
 
-
-
-
-
-
-
         function changeRange(value) {
           var rangeValue = document.querySelector('.range-value');
           rangeValue.value = value + 'м³';
@@ -247,7 +241,7 @@ function init() {
       }
     }
 
-    myMap.events.add('click', searchLocation());
+    myMap.events.add('click', bind(this, searchLocation(e)));
 
     //---------------
 
