@@ -142,6 +142,15 @@ function init() {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
         var coords = e.get('coords');
+
+        var myGeocoder = ymaps.geocode(coords, { kind: 'locality' });
+        myGeocoder.then(
+          function (res) {
+            var nearest = res.geoObjects.get(0);
+            var name = nearest.properties.get('name');
+            console.log(name);
+          })
+
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
           .then(function (res) {
