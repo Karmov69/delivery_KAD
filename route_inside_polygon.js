@@ -138,9 +138,7 @@ function init() {
     });
     // -------------
    
-
-    myMap.events.add('click', function (e) {
-      
+    function searchLocation(e) {
       if (!myMap.balloon.isOpen()) {
         myMap.geoObjects.removeAll();
         myMap.geoObjects.add(moscowPolygon);
@@ -156,11 +154,11 @@ function init() {
         ymaps
           .route([[59.939095, 30.315868], [coords[0].toPrecision(6), coords[1].toPrecision(6)]])
           .then(function (res) {
-            
+
             // Объединим в выборку все сегменты маршрута.
             var pathsObjects = ymaps.geoQuery(res.getPaths()),
               edges = [];
-            
+
             // Переберем все сегменты и разобьем их на отрезки.
             pathsObjects.each(function (path) {
               var coordinates = path.geometry.getCoordinates();
@@ -171,7 +169,7 @@ function init() {
                 });
               }
             });
-           
+
 
             var isKAD = moscowPolygon.geometry.contains([coords[0].toPrecision(6), coords[1].toPrecision(6)]);
 
@@ -201,7 +199,7 @@ function init() {
             // - отрезки, описываюшие маршрут;
             // - начальную и конечную точки;
             // - промежуточные точки.
-          
+
             var routeObjects = ymaps
               .geoQuery(edges)
               .add(res.getWayPoints())
@@ -236,8 +234,8 @@ function init() {
 
 
 
-        
-        
+
+
 
         function changeRange(value) {
           var rangeValue = document.querySelector('.range-value');
@@ -247,7 +245,9 @@ function init() {
       else {
         myMap.balloon.close();
       }
-    });
+    }
+
+    myMap.events.add('click', searchLocation(e));
 
     //---------------
 
